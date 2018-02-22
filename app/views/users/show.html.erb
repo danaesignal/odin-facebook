@@ -1,0 +1,15 @@
+<h1><%= @user.name %></h1>
+
+
+<h2>
+  Posts by <%= @user.name %>:
+</h2>
+
+<p>
+  <i>Posts go here</i>
+</p>
+
+<%= render 'friend_request' unless hide_button %>
+
+<%= render 'unfriend' if current_user.friends.include? @user or
+  current_user.pending_requests.include? @user%>

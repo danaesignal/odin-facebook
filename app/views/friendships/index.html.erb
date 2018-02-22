@@ -1,0 +1,8 @@
+<% if current_user.friends %>
+  <div><h3>Your Friends: </h3>
+  <%= render current_user.friends %>
+<% end %>
+
+<% unless @friendships.empty? %>
+  <%= render 'requests' %>
+<% end %>

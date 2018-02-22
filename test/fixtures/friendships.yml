@@ -4,12 +4,8 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-  name: David Williams
-  email: test@test.com
-  encrypted_password: <%= Devise.friendly_token[0,20] %>
-
-two:
-  name: Dave Danitz
-  email: fad@test.com
-  encrypted_password: <%= Devise.friendly_token[0,20] %>
+one: {}
+# column: value
+#
+two: {}
+# column: value

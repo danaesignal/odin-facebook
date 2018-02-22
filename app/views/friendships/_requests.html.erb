@@ -1,0 +1,18 @@
+<h3>Your Pending Friend Requests:</h3>
+<div class="friend-or-block">
+  <% @friendships.each do |friendship| %>
+    <%= friendship.initiator.name %>
+    <%= form_for friendship do |f| %>
+      <%= f.hidden_field :id, value: friendship.id %>
+      <%= f.hidden_field :recipient_id, value: friendship.recipient_id %>
+      <%= f.hidden_field :initiator_id, value: friendship.initiator_id %>
+      <%= f.hidden_field :activated, value: true %>
+      <%= f.submit "Accept Friend Request", class: 'accept-friend-btn'%>
+    <% end %>
+    <%= form_for(friendship, html: {method: 'delete'}) do |f| %>
+      <%= f.hidden_field :id, value: friendship.id %>
+      <%= f.submit "Delete Friend Request", class: 'accept-friend-btn'%>
+    <% end %>
+  </br >
+  <% end %>
+</div>

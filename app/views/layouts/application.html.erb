@@ -10,6 +10,14 @@
 
   <body>
     <% if user_signed_in? %>
+      <%= current_user.name %> |
+      <% if current_user.friend_requests.count > 0 %>
+        <%= link_to pluralize(current_user.friend_requests.count, 'friend request'
+          ), friendships_path %> |
+      <% else %>
+        <%= link_to pluralize(current_user.friends.count, 'friends'),
+        friendships_path %> |
+      <% end %>
       <%= link_to "Edit profile", edit_user_registration_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     <% else %>
