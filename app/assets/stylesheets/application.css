@@ -21,3 +21,48 @@
 .friend-or-block form {
   display: inline;
 }
+
+.post-timestamp {
+  margin-top: -25px;
+  padding: 5px;
+}
+
+.post-author {
+  margin-top: -1px;
+  padding: 5px;
+}
+.post-content {
+  margin-top: -20px;
+  padding: 5px;
+}
+
+.post {
+  border: 1px solid black;
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 3px;
+  box-sizing: border-box;
+}
+
+.new-post {
+  width: 60%;
+  margin: 0 auto;
+  padding-right: 6px;
+  box-sizing: border-box;
+}
+
+#post_content {
+  width: 100%;
+  height: 50px;
+}
+
+.submit-btn {
+  float: right;
+  margin-right: -6px;
+  margin-bottom: 3px;
+}
+
+
+.clearfix {
+  clear: both;
+}

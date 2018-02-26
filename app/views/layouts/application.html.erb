@@ -10,7 +10,7 @@
 
   <body>
     <% if user_signed_in? %>
-      <%= current_user.name %> |
+      <%= link_to current_user.name, current_user %> |
       <% if current_user.friend_requests.count > 0 %>
         <%= link_to pluralize(current_user.friend_requests.count, 'friend request'
           ), friendships_path %> |

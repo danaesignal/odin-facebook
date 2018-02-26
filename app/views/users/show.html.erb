@@ -1,13 +1,22 @@
 <h1><%= @user.name %></h1>
 
 
+  <% if @user == current_user %>
+  <div class="new-post">
+    <%= form_for :post do |f| %>
+      <%= f.hidden_field :author_id, value: current_user.id %>
+      <%= f.text_area :content %>
+      <%= f.submit "Post to Timeline", class: "submit-btn" %>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+  <% end %>
+
 <h2>
   Posts by <%= @user.name %>:
 </h2>
 
-<p>
-  <i>Posts go here</i>
-</p>
+<%= render @posts %>
 
 <%= render 'friend_request' unless hide_button %>
 
