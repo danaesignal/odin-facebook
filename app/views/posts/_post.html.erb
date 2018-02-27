@@ -2,4 +2,12 @@
   <h3 class="post-author"><%= post.author.name %> posted:</h3>
   <h6 class="post-timestamp"><%= post.created_at %></h6>
   <div class="post-content"><%= post.content %></div>
+  <div class="comments-count">
+    <% if params[:controller] == "posts" and params[:action] == "show" %>
+      <%= pluralize(post.comments.count, 'comment') %>
+    <% else %>
+      <%= link_to pluralize(post.comments.count, 'comment'), post %>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
 </div>

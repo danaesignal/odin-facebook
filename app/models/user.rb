@@ -18,6 +18,7 @@ class User < ApplicationRecord
             through: :passive_friendships, source: :initiator
 
   has_many  :posts, foreign_key: "author_id"
+  has_many  :comments, foreign_key: "author_id"
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

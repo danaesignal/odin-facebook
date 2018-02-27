@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  resources :users, :posts
+  resources :users, only: [:show, :index]
+  resources :posts, only: [:show, :index, :create]
+  resources :comments, only: [:create]
   resources :friendships, only: [:index, :create, :update, :destroy]
 
   get '*path' => redirect('/')
