@@ -45,7 +45,6 @@ class PostingFlowTest < ActionDispatch::IntegrationTest
 
   test "users should be able to comment on posts" do
     sign_in @user
-    get posts_path
 
     author_id = @user.id
     content = "Test"
@@ -64,5 +63,29 @@ class PostingFlowTest < ActionDispatch::IntegrationTest
 
     get post_path(@user.posts.first)
     assert_match "1 comment", response.body
+  end
+
+  test "users should be able to like and unlike content" do
+    sign_in @user
+
+    author_id = @user.id
+    content = "Test"
+
+    post posts_path, params: {post:{author_id: author_id, content: content}}
+    content_id = @user.posts.first.id
+
+    get posts_path
+    assert_match "0 likes", response.body
+
+    post likes_path, params: {author_id: author_id, content_id: content_id,
+                             content_type: "post"}
+
+    get posts_path
+    assert_match "1 like", response.body
+
+    delete like_path(@user.posts.first.likes.first)
+
+    get posts_path
+    assert_match "0 likes", response.body
   end
 end

@@ -3,5 +3,13 @@
   (<em><%= time_ago_in_words(comment.created_at) %> ago</em>):</br>
   <div class="comment-content">
     <%= comment.content %>
-  </div></br>
+  </div>
+  <div class="comment-likes">
+    <% if current_user.liked_content.include? comment %>
+      <%= render 'shared/unlike_form', content: comment %>
+    <% else %>
+      <%= render 'shared/like_form', content: comment %>
+    <% end %>
+  </div>
 </div>
+</br>

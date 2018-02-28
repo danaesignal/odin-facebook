@@ -20,6 +20,10 @@ class User < ApplicationRecord
   has_many  :posts, foreign_key: "author_id"
   has_many  :comments, foreign_key: "author_id"
 
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :likeable, source_type: 'Post'
+  has_many :liked_comments, through: :likes, source: :likeable, source_type: 'Comment'
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -49,5 +53,9 @@ class User < ApplicationRecord
   def friendship_with(user)
     active_friendships.where(recipient_id: user.id) |
     passive_friendships.where(initiator_id: user.id)
+  end
+
+  def liked_content
+    liked_posts | liked_comments
   end
 end

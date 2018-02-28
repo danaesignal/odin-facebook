@@ -9,5 +9,13 @@
       <%= link_to pluralize(post.comments.count, 'comment'), post %>
     <% end %>
   </div>
+
+  <div class="post-likes">
+    <% if current_user.liked_content.include? post %>
+      <%= render 'shared/unlike_form', content: post %>
+    <% else %>
+      <%= render 'shared/like_form', content: post %>
+    <% end %>
+  </div>
   <div class="clearfix"></div>
 </div>
