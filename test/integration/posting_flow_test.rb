@@ -6,7 +6,7 @@ class PostingFlowTest < ActionDispatch::IntegrationTest
     @other_user = users(:two)
   end
 
-  test "new posts should show up on post timeline" do
+  test "new posts from self and friends should show up on post timeline" do
     sign_in @user
     get posts_path
 
@@ -19,6 +19,21 @@ class PostingFlowTest < ActionDispatch::IntegrationTest
 
     get posts_path
     assert_match "Test", response.body
+
+    post friendships_path, params: {friendship:{recipient_id:@other_user.id}}
+    
+    sign_in @other_user
+    friendship = Friendship.where(initiator_id: @user.id).first
+    patch friendship_path(friendship), params: {friendship: {activated:true}}
+
+    author_id = @other_user.id
+    content = "Task"
+
+    post posts_path, params: {post:{author_id: author_id, content: content}}
+    get posts_path
+
+    assert_match "Test", response.body
+    assert_match "Task", response.body
   end
 
   test "user's posts should be visible on user's page" do

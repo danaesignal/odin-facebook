@@ -5,14 +5,14 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = current_user.posts.order('created_at DESC')
+    @posts = current_user.timeline.order('created_at DESC')
   end
 
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = "Post created!"
-      redirect_to posts_path
+      redirect_back(fallback_location: root_path)
     else
       flash[:alert].now = "There was a problem!"
       render 'index'

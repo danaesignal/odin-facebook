@@ -3,7 +3,7 @@
 
   <% if @user == current_user %>
   <div class="new-post">
-    <%= form_for :post do |f| %>
+    <%=  form_for(:post, url: posts_path) do |f| %>
       <%= f.hidden_field :author_id, value: current_user.id %>
       <%= f.text_area :content %>
       <%= f.submit "Post to Timeline", class: "submit-btn" %>

@@ -11,11 +11,11 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_match "facebook", response.body
   end
 
-  test "should render home#index if logged in" do
+  test "should render posts#index if logged in" do
     sign_in @user
     get root_path
 
-    assert_template "home/index"
-    assert_match "Authorized", response.body
+    assert_template "posts/index"
+    assert_match "Timeline", response.body, 2
   end
 end

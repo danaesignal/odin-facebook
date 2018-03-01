@@ -1,9 +1,16 @@
 <div class="new-post">
-  <%= form_for :post do |f| %>
+  <h3>New Post:</h3>
+  <%= form_for(:post, url: posts_path) do |f| %>
     <%= f.hidden_field :author_id, value: current_user.id %>
     <%= f.text_area :content %>
     <%= f.submit "Post to Timeline", class: "submit-btn" %>
   <% end %>
-  <div class="clearfix"></div>
+  <h3>Timeline:</h3>
 </div>
-<%= render @posts %>
+<% if @posts.empty? %>
+  <div class="center">
+    No posts found. Make some new friends and get posting!
+  </div>
+<% else %>
+  <%= render @posts %>
+<% end %>

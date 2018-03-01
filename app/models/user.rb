@@ -58,4 +58,9 @@ class User < ApplicationRecord
   def liked_content
     liked_posts | liked_comments
   end
+
+  def timeline
+    friend_ids = friends.empty? ? id : friends.map{ |f| f.id }.join(" ")
+    Post.where("author_id IN (#{friend_ids}) OR author_id = :user_id", user_id: id)
+  end
 end

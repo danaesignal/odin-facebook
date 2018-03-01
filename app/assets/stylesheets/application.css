@@ -94,6 +94,16 @@
   margin: 0 auto;
 }
 
+.header {
+  text-align: right;
+}
+
+.center {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 3px;
+}
+
 .clearfix {
   clear: both;
 }

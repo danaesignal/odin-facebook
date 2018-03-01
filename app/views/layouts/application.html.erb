@@ -9,24 +9,26 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to current_user.name, current_user %> |
-      <% if current_user.friend_requests.count > 0 %>
-        <%= link_to pluralize(current_user.friend_requests.count, 'friend request'
-          ), friendships_path %> |
+    <div class="header">
+      <% if user_signed_in? %>
+        <%= link_to "Timeline", posts_path %> |
+        <% if current_user.friend_requests.count > 0 %>
+          <%= link_to pluralize(current_user.friend_requests.count, 'friend request'
+            ), friendships_path %> |
+        <% else %>
+          <%= link_to pluralize(current_user.friends.count, 'friends'),
+          friendships_path %> |
+        <% end %>
+        <%= link_to current_user.name, current_user %>
+        (<%= link_to "Edit profile", edit_user_registration_path %>) |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to pluralize(current_user.friends.count, 'friends'),
-        friendships_path %> |
+        <%= link_to "Sign up", new_user_registration_path %> |
+        <%= link_to "Login", new_user_session_path %>
       <% end %>
-      <%= link_to "Edit profile", edit_user_registration_path %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> |
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    </div>
+    <p class="notice center"><%= notice %></p>
+    <p class="alert center"><%= alert %></p>
     <%= yield %>
     <%= debug(params) if Rails.env.development? %>
   </body>
