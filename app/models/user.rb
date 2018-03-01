@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          omniauth_providers: [:facebook]
 
+  mount_uploader :avatar, AvatarUploader
+
   has_many  :active_friendships, foreign_key: "initiator_id", class_name: "Friendship"
   has_many  :passive_friends, -> { where(friendships: {activated: true})},
             through: :active_friendships, source: :recipient

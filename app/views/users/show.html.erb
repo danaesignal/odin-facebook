@@ -1,24 +1,24 @@
-<h1><%= @user.name %></h1>
+<div class="center">
+  <h1><%= @user.name %></h1>
+  <%= image_tag @user.avatar.url if @user.avatar.url %>
+  <h3><%= sub_headline %></h3>
+</div>
 
-
-  <% if @user == current_user %>
-  <div class="new-post">
-    <%=  form_for(:post, url: posts_path) do |f| %>
-      <%= f.hidden_field :author_id, value: current_user.id %>
-      <%= f.text_area :content %>
-      <%= f.submit "Post to Timeline", class: "submit-btn" %>
-    <% end %>
-    <div class="clearfix"></div>
-  </div>
+<% if @user == current_user %>
+<div class="new-post">
+  <%=  form_for(:post, url: posts_path) do |f| %>
+    <%= f.hidden_field :author_id, value: current_user.id %>
+    <%= f.text_area :content %>
+    <%= f.submit "Post to Timeline", class: "submit-btn" %>
   <% end %>
+</div>
+<% end %>
 
-<h2>
-  Posts by <%= @user.name %>:
-</h2>
+<div class="center">
+  <h2>Posts by <%= @user.name %>:</h2>
+</div>
 
 <%= render @posts %>
-
 <%= render 'friend_request' unless hide_button %>
-
 <%= render 'unfriend' if current_user.friends.include? @user or
   current_user.pending_requests.include? @user%>
