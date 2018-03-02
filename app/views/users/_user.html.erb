@@ -1,1 +1,4 @@
-<%= link_to user.name, user_path(user) %></br>
+<div class="center">
+  <%= link_to user.name, user_path(user) %>
+  <div class="inline-request"><%= render 'shared/request_link', user:user %></div>
+</div>

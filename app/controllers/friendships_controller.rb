@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
   def create
     @user = User.find(friendship_params[:recipient_id])
-    current_user.passive_friends << @user
+    current_user.passive_friends << @user if current_user.friendship_with(@user).empty?
     redirect_to @user
   end
 
@@ -21,13 +21,13 @@ class FriendshipsController < ApplicationController
       flash[:alert] = "Something went wrong! Please contact an administrator."
     end
 
-    redirect_to friendships_path
+    redirect_back(fallback_location: current_user)
   end
 
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    redirect_to friendships_path
+    redirect_back(fallback_location: current_user)
   end
 
   private

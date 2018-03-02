@@ -22,6 +22,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'mini_magick', '4.7.0'
 gem 'carrierwave', '~> 1.0'
 gem 'figaro'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

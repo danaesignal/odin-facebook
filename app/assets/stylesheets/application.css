@@ -104,6 +104,11 @@
   margin-bottom: 3px;
 }
 
+.inline-request {
+  display: inline-block;
+  float: right;
+}
+
 .clearfix {
   clear: both;
 }

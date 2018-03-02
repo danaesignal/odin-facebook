@@ -1,4 +1,0 @@
-<%= form_for(current_user.active_friendships.build) do |f| %>
-  <div><%= f.hidden_field :recipient_id, value: @user.id %></div>
-  <%= f.submit "Send Friend Request"%>
-<% end %>

@@ -1,0 +1,4 @@
+<%= link_to 'Send Friend Request', "#", onclick: "$('##{user.id}').submit()" %>
+<%= form_for(current_user.active_friendships.build, html: {id: "#{user.id}"}) do |f| %>
+  <div><%= f.hidden_field :recipient_id, value: user.id %></div>
+<% end %>

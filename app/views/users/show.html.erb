@@ -19,6 +19,8 @@
 </div>
 
 <%= render @posts %>
-<%= render 'friend_request' unless hide_button %>
-<%= render 'unfriend' if current_user.friends.include? @user or
-  current_user.pending_requests.include? @user%>
+<% unless current_user.friendship_with(@user).empty? %>
+  <%= render 'shared/unfriend_link', user:@user%>
+<% else %>
+  <%= render 'shared/request_link', user:@user unless hide_button?(@user) %>
+<% end %>

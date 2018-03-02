@@ -1,0 +1,4 @@
+<%= link_to 'Unfriend', "#", onclick: "$('##{user.id}').submit()" %>
+<%= form_for(current_user.friendship_with(user), html: {id: "#{user.id}", method: 'delete'}) do |f| %>
+  <div><%= hidden_field_tag :recipient_id, user.id %></div>
+<% end %>
