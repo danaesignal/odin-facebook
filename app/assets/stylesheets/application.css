@@ -109,6 +109,10 @@
   float: right;
 }
 
+.field_with_errors {
+  display: inline;
+}
+
 .clearfix {
   clear: both;
 }
